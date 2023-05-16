@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "909647721981",
+    "project_id": "journal-18a0f",
+    "storage_bucket": "journal-18a0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909647721981:android:aeb8767c5868df1c789594",
+        "android_client_info": {
+          "package_name": "com.example.journal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909647721981-7gmo931cojq5m477982njejvgpkpu2gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6qykfWthRNvMVfrQn8jKVFG9nNO9WwO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909647721981-7gmo931cojq5m477982njejvgpkpu2gb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "909647721981-32d4tds60fpvhogltfh98vnj24icdcjc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myJournal"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909647721981:android:6f1163713b0828ba789594",
+        "android_client_info": {
+          "package_name": "com.example.my_journal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909647721981-7gmo931cojq5m477982njejvgpkpu2gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6qykfWthRNvMVfrQn8jKVFG9nNO9WwO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909647721981-7gmo931cojq5m477982njejvgpkpu2gb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "909647721981-32d4tds60fpvhogltfh98vnj24icdcjc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myJournal"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
