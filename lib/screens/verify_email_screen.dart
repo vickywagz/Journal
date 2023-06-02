@@ -13,7 +13,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Verify email'),
+        title: Center(child: const Text('Verify email')),
       ),
       body: Column(
         children: [

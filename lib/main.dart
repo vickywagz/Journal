@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/firebase_options.dart';
 import 'package:journal/screens/login_screen.dart';
+import 'package:journal/screens/main_screen.dart';
 import 'package:journal/screens/register_screen.dart';
 import 'package:journal/screens/verify_email_screen.dart';
 
@@ -42,14 +43,13 @@ class HomePage extends StatelessWidget {
             final user = FirebaseAuth.instance.currentUser;
             if (user != null) {
               if (user.emailVerified) {
-                print('Email is verified');
+                return const NoteView();
               } else {
                 return const VerifyEmailView();
               }
             } else {
               return const LoginView();
             }
-            return const Text('Done');
 
           default:
             return const CircularProgressIndicator.adaptive();
@@ -58,4 +58,31 @@ class HomePage extends StatelessWidget {
     );
   }
 }
- 
+
+enum MenuAction { logout }
+
+Future<bool> showLogOutDialog(BuildContext context) {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Sign out'),
+        content: const Text('Are you sure you want to sign out?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+            child: const Text('Log out'),
+          ),
+        ],
+      );
+    },
+  ).then((value) => value ?? false);
+}
