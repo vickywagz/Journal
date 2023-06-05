@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/firebase_options.dart';
-import 'package:journal/screens/login_screen.dart';
-import 'package:journal/screens/main_screen.dart';
-import 'package:journal/screens/register_screen.dart';
-import 'package:journal/screens/verify_email_screen.dart';
+import 'package:journal/screens/login_view.dart';
+import 'package:journal/screens/main_view.dart';
+import 'package:journal/screens/register_view.dart';
+import 'package:journal/screens/verify_email_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +23,7 @@ void main() {
       routes: {
         '/login/': (context) => const LoginView(),
         '/register/': (context) => const RegisterView(),
+        '/main/':(context) => const MainView()
       },
     ),
   );
@@ -43,7 +44,7 @@ class HomePage extends StatelessWidget {
             final user = FirebaseAuth.instance.currentUser;
             if (user != null) {
               if (user.emailVerified) {
-                return const NoteView();
+                return const MainView();
               } else {
                 return const VerifyEmailView();
               }

@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+import 'dart:developer' as devtools show log;
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterViewState extends State<RegisterView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -30,7 +30,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Register'),
       ),
       body: ListView(
         children: [
@@ -41,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
           ),
           const Center(
             child: Text(
-              'Kindly input your credentials to get started',
+              'Kindly input your details let\'s get you started',
               style: TextStyle(
                 height: 2,
                 fontSize: 15.0,
@@ -77,27 +77,26 @@ class _LoginViewState extends State<LoginView> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(elevation: 10),
               onPressed: () async {
+                final email = _email.text;
+                final password = _password.text;
                 try {
-                  final email = _email.text;
-                  final password = _password.text;
-                  final userCredential =
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  final userCredential = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
                     email: email,
                     password: password,
                   );
-                  print(userCredential);
+                  devtools.log(userCredential.toString());
                 } on FirebaseAuthException catch (e) {
-                  if (e.code == 'user-not-found') {
-                    print('User not found');
-                  } else if (e.code == 'wrong-password') {
-                    print('Wrong password');
-                  } else {
-                    print('Something else happened');
-                    print(e.code);
+                  if (e.code == 'weak-password') {
+                    devtools.log('Weak password');
+                  } else if (e.code == 'invalid-email') {
+                    devtools.log('The email entered is invalid');
+                  } else if (e.code == 'email-already-in-use') {
+                    devtools.log('Email is already in use');
                   }
                 }
               },
-              child: const Text('Login'),
+              child: const Text('Register'),
             ),
           ),
           Padding(
@@ -109,11 +108,11 @@ class _LoginViewState extends State<LoginView> {
               style: ElevatedButton.styleFrom(elevation: 10),
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/register/',
+                  '/login/',
                   (route) => false,
                 );
               },
-              child: const Text('Not registered? Register here!'),
+              child: const Text('Already have an account? Log in!'),
             ),
           ),
         ],

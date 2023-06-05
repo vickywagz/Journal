@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as devtools show log;
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -30,7 +31,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('Login'),
       ),
       body: ListView(
         children: [
@@ -41,7 +42,7 @@ class _RegisterViewState extends State<RegisterView> {
           ),
           const Center(
             child: Text(
-              'Kindly input your details let\'s get you started',
+              'Kindly input your credentials to get started',
               style: TextStyle(
                 height: 2,
                 fontSize: 15.0,
@@ -80,23 +81,23 @@ class _RegisterViewState extends State<RegisterView> {
                 final email = _email.text;
                 final password = _password.text;
                 try {
-                  final userCredential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
                     email: email,
                     password: password,
                   );
-                  print(userCredential);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/main/',
+                    (route) => false,
+                  );
                 } on FirebaseAuthException catch (e) {
-                  if (e.code == 'weak-password') {
-                    print('Weak password');
-                  } else if (e.code == 'invalid-email') {
-                    print('The email entered is invalid');
-                  } else if (e.code == 'email-already-in-use') {
-                    print('Email is already in use');
+                  if (e.code == 'user-not-found') {
+                    devtools.log('User not found');
+                  } else if (e.code == 'wrong-password') {
+                    devtools.log('Wrong password');
                   }
                 }
               },
-              child: const Text('Register'),
+              child: const Text('Login'),
             ),
           ),
           Padding(
@@ -108,11 +109,11 @@ class _RegisterViewState extends State<RegisterView> {
               style: ElevatedButton.styleFrom(elevation: 10),
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/login/',
+                  '/register/',
                   (route) => false,
                 );
               },
-              child: const Text('Already have an account? Log in!'),
+              child: const Text('Not registered? Register here!'),
             ),
           ),
         ],
