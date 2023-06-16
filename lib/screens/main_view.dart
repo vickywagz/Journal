@@ -4,7 +4,7 @@ import 'package:journal/navigations/insight_view.dart';
 import 'package:journal/navigations/media_view.dart';
 import 'package:journal/navigations/new_note_view.dart';
 import 'package:journal/navigations/settings_view.dart';
-import 'package:journal/screens/note_view.dart';
+import 'package:journal/navigations/note_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
