@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:journal/navigations/insight_view.dart';
 import 'package:journal/navigations/media_view.dart';
@@ -6,14 +5,14 @@ import 'package:journal/navigations/new_note_view.dart';
 import 'package:journal/navigations/settings_view.dart';
 import 'package:journal/navigations/note_view.dart';
 
-class MainView extends StatefulWidget {
-  const MainView({super.key});
+class NavigatorView extends StatefulWidget {
+  const NavigatorView({super.key});
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<NavigatorView> createState() => _NavigatorViewState();
 }
 
-class _MainViewState extends State<MainView> {
+class _NavigatorViewState extends State<NavigatorView> {
   List pages = [
     NoteView(),
     MediaView(),

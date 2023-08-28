@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:journal/constants/routes.dart';
 import 'package:journal/firebase_options.dart';
 import 'package:journal/screens/login_view.dart';
-import 'package:journal/screens/main_view.dart';
+import 'package:journal/navigator_screen.dart/navigator_view.dart';
 import 'package:journal/screens/register_view.dart';
 import 'package:journal/screens/verify_email_view.dart';
 
@@ -24,8 +24,8 @@ void main() {
       routes: {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        mainRoute:(context) => const MainView(),
-        verifyEmailRoute:(context) => const VerifyEmailView(),
+        mainRoute: (context) => const NavigatorView(),
+        verifyEmailRoute: (context) => const VerifyEmailView(),
       },
     ),
   );
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
             final user = FirebaseAuth.instance.currentUser;
             if (user != null) {
               if (user.emailVerified) {
-                return const MainView();
+                return const NavigatorView();
               } else {
                 return const VerifyEmailView();
               }
