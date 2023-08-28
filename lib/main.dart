@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/constants/routes.dart';
-import 'package:journal/firebase_options.dart';
 import 'package:journal/screens/login_view.dart';
-import 'package:journal/navigator_screen.dart/navigator_view.dart';
+import 'package:journal/screens/navigator_view.dart';
 import 'package:journal/screens/register_view.dart';
 import 'package:journal/screens/verify_email_view.dart';
+import 'package:journal/service/auth/auth_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,15 +35,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ),
+      future: AuthService.firbase().initialize(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            final user = FirebaseAuth.instance.currentUser;
+            final user = AuthService.firbase().currentUser;
             if (user != null) {
-              if (user.emailVerified) {
+              if (user.isEmailVerified) {
                 return const NavigatorView();
               } else {
                 return const VerifyEmailView();
@@ -61,8 +57,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-enum MenuAction { logout }
 
 Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(

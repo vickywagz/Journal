@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:journal/navigations/insight_view.dart';
-import 'package:journal/navigations/media_view.dart';
-import 'package:journal/navigations/new_note_view.dart';
-import 'package:journal/navigations/settings_view.dart';
-import 'package:journal/navigations/note_view.dart';
+import 'package:journal/screens/insight_view.dart';
+import 'package:journal/screens/media_view.dart';
+import 'package:journal/screens/new_note_view.dart';
+import 'package:journal/screens/settings_view.dart';
+import 'package:journal/screens/note_view.dart';
 
 class NavigatorView extends StatefulWidget {
   const NavigatorView({super.key});
